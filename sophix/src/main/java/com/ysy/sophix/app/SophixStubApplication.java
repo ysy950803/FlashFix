@@ -17,7 +17,7 @@ public class SophixStubApplication extends SophixApplication {
 
     @Keep
     @SophixEntry(MainApplication.class)
-    static class MainStubApplication {
+    static class RealApplicationStub {
     }
 
     @Override
@@ -53,5 +53,11 @@ public class SophixStubApplication extends SophixApplication {
                     }
                 })
                 .initialize();
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        SophixManager.getInstance().queryAndLoadNewPatch();
     }
 }

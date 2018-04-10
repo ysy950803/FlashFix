@@ -30,3 +30,7 @@
 -keep class com.ta.utdid2.device.**{*;}
 #防止inline
 -dontoptimize
+
+-keepclassmembers class com.ysy.sophix.app.MainApplication {
+    public <init>();
+}
