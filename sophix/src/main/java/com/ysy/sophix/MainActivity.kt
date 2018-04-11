@@ -3,6 +3,7 @@ package com.ysy.sophix
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import com.taobao.sophix.SophixManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +22,10 @@ class MainActivity : AppCompatActivity() {
                 message.setText(resIdList[1])
                 return@OnNavigationItemSelectedListener true
             }
+            R.id.navigation_dashboard2 -> {
+                message.setText(resIdList[1])
+                return@OnNavigationItemSelectedListener true
+            }
             R.id.navigation_notifications -> {
                 message.setText(resIdList[2])
                 return@OnNavigationItemSelectedListener true
@@ -31,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        SophixManager.getInstance().queryAndLoadNewPatch()
         setContentView(R.layout.activity_main)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
