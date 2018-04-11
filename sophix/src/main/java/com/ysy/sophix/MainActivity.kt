@@ -22,10 +22,6 @@ class MainActivity : AppCompatActivity() {
                 message.setText(resIdList[1])
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_dashboard2 -> {
-                message.setText(resIdList[1])
-                return@OnNavigationItemSelectedListener true
-            }
             R.id.navigation_notifications -> {
                 message.setText(resIdList[2])
                 return@OnNavigationItemSelectedListener true
