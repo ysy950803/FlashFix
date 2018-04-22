@@ -51,6 +51,7 @@ public class SophixStubApplication extends SophixApplication {
                             // 如果需要在后台重启，建议此处用SharePreference保存状态。
                             Log.i(TAG, "sophix preload patch success. restart app to make effect.");
                         }
+                        System.gc();
                     }
                 })
                 .initialize();
