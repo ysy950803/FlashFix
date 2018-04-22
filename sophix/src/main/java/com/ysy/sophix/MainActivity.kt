@@ -1,5 +1,6 @@
 package com.ysy.sophix
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                message.setText(resIdList[2])
+                message.setText(resIdList[0])
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {
-                message.setText(resIdList[0])
+                message.setText(resIdList[2])
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -41,9 +42,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViews() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
         btn_query_patch.setOnClickListener({
             SophixManager.getInstance().queryAndLoadNewPatch()
             Toast.makeText(this, "queryAndLoadNewPatch", Toast.LENGTH_SHORT).show()
         })
+
+        btn_open_other.setOnClickListener {
+            startActivity(Intent(this, OtherActivity::class.java))
+        }
     }
 }
