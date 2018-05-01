@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.taobao.sophix.SophixManager;
 
@@ -27,5 +28,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, OtherActivity.class));
             }
         });
+
+        ((TextView) findViewById(R.id.tv_stat)).setText("Three");
     }
 }
