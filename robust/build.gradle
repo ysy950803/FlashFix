@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+//制作补丁时将这个打开，auto-patch-plugin紧跟着com.android.application
+apply plugin: 'auto-patch-plugin'
+//apply plugin: 'robust'
+
+android {
+    compileSdkVersion 26
+
+    defaultConfig {
+        applicationId "com.ysy.robust"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+    }
+
+    signingConfigs {
+        ysy {
+            storeFile file("keystore.jks")
+            storePassword "031023"
+            keyAlias "robust"
+            keyPassword "031023"
+        }
+    }
+
+    buildTypes {
+        release {
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.ysy
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.meituan.robust:robust:0.4.82'
+}
