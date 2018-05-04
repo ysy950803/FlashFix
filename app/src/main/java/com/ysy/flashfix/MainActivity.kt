@@ -2,6 +2,7 @@ package com.ysy.flashfix
 
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         showClassLoaderInfo()
         initViews()
+//        startTimer()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -86,5 +88,24 @@ class MainActivity : AppCompatActivity() {
         }
 
         return "Fail"
+    }
+
+    private fun startTimer() {
+        Handler().postDelayed({
+            run()
+        }, 2000)
+    }
+
+    private fun run() {
+        try {
+            val cl = HotSwapCL(Environment.getExternalStorageDirectory().path, arrayOf("Foo"))
+            val cls = cl.loadClass("Foo")
+            val foo = cls.newInstance()
+
+            val method = foo.javaClass.getMethod("sayHello", *arrayOf())
+            method.invoke(foo, arrayOf<Any>())
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }
