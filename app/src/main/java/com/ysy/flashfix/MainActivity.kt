@@ -1,13 +1,17 @@
 package com.ysy.flashfix
 
 import android.os.Bundle
+import android.os.Environment
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.ysy.plugin.IPlugin
+import dalvik.system.DexClassLoader
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,20 +25,18 @@ class MainActivity : AppCompatActivity() {
                     .setAction("Action", null).show()
         }
 
-        // Example of a call to a native method
-        sample_text.text = stringFromJNI()
+//        sample_text.text = stringFromJNI()
+
+        showClassLoaderInfo()
+        sample_text.text = getTextFromPlugin()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
@@ -49,9 +51,31 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
 
-        // Used to load the 'native-lib' library on application startup.
         init {
             System.loadLibrary("native-lib")
         }
+    }
+
+    private fun showClassLoaderInfo() {
+        var loader = MainActivity::class.java.classLoader
+        while (loader != null) {
+            println(loader.toString())
+            loader = loader.parent
+        }
+    }
+
+    private fun getTextFromPlugin(): String {
+        val jarFile = File(Environment.getExternalStorageDirectory().path
+                + File.separator + "flashfix_plugin_dex.jar")
+
+        if (!jarFile.exists()) {
+            return ""
+        }
+
+        val dexClassLoader = DexClassLoader(jarFile.absolutePath, externalCacheDir.absolutePath,
+                null, classLoader)
+        val clazz = dexClassLoader.loadClass("com.ysy.plugin.PluginManager")
+        val plugin = clazz.newInstance() as IPlugin
+        return plugin.getTestText
     }
 }
