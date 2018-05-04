@@ -6,7 +6,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import com.ysy.plugin.IPlugin
+import com.ysy.external.IPlugin
 import dalvik.system.DexClassLoader
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,15 +20,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
-
-//        sample_text.text = stringFromJNI()
-
         showClassLoaderInfo()
-        sample_text.text = getTextFromPlugin()
+        initViews()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -43,10 +36,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * A native method that is implemented by the 'native-lib' native library,
-     * which is packaged with this application.
-     */
     external fun stringFromJNI(): String
 
     companion object {
@@ -54,6 +43,16 @@ class MainActivity : AppCompatActivity() {
         init {
             System.loadLibrary("native-lib")
         }
+    }
+
+    private fun initViews() {
+        fab.setOnClickListener { view ->
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
+            refreshText()
+        }
+
+        sample_text.text = stringFromJNI()
     }
 
     private fun showClassLoaderInfo() {
@@ -64,18 +63,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun refreshText() {
+        sample_text.text = getTextFromPlugin()
+    }
+
     private fun getTextFromPlugin(): String {
         val jarFile = File(Environment.getExternalStorageDirectory().path
-                + File.separator + "flashfix_plugin_dex.jar")
+                + File.separator + "flashfix_ext_dex.jar")
 
         if (!jarFile.exists()) {
-            return ""
+            return "File Not Exists"
         }
 
         val dexClassLoader = DexClassLoader(jarFile.absolutePath, externalCacheDir.absolutePath,
                 null, classLoader)
-        val clazz = dexClassLoader.loadClass("com.ysy.plugin.PluginManager")
-        val plugin = clazz.newInstance() as IPlugin
-        return plugin.getTestText
+        try {
+            val clazz = dexClassLoader.loadClass("com.ysy.external.PluginManager")
+            val plugin = clazz.newInstance() as IPlugin
+            return plugin.testText
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return "Fail"
     }
 }
