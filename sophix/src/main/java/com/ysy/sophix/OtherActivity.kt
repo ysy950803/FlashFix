@@ -2,8 +2,10 @@ package com.ysy.sophix
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Process
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 
 class OtherActivity : AppCompatActivity() {
 
@@ -17,5 +19,6 @@ class OtherActivity : AppCompatActivity() {
         setContentView(R.layout.activity_other)
 
         (findViewById<View>(R.id.btn_other) as TextView).text = nb
+        Toast.makeText(this, "" + Process.myPid(), Toast.LENGTH_SHORT).show()
     }
 }
