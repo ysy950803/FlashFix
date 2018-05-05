@@ -7,7 +7,6 @@ import android.content.ServiceConnection
 import android.os.*
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 
 import com.taobao.sophix.SophixManager
@@ -23,22 +22,24 @@ class MainActivity : AppCompatActivity() {
 
         initViews()
         bindFixManagerService()
-        Toast.makeText(this, "" + Process.myPid(), Toast.LENGTH_SHORT).show()
     }
 
     private fun initViews() {
         findViewById<View>(R.id.btn_query_patch).setOnClickListener {
             SophixManager.getInstance().queryAndLoadNewPatch()
-//            Toast.makeText(this, "" + Process.myPid(), Toast.LENGTH_SHORT).show()
+            Handler().postDelayed({
+                Toast.makeText(applicationContext, "拉取成功", Toast.LENGTH_SHORT).show()
+            }, 1000)
         }
 
-        findViewById<View>(R.id.btn_open_other).setOnClickListener {
-//            startActivity(Intent(this@MainActivity, OtherActivity::class.java))
+        findViewById<View>(R.id.btn_apply_patch).setOnClickListener {
             notifyPatched()
             Process.killProcess(Process.myPid())
         }
 
-        (findViewById<View>(R.id.tv_stat) as TextView).text = "Three"
+        findViewById<View>(R.id.btn_open_new).setOnClickListener {
+            startActivity(Intent(this, ScrollingActivity::class.java))
+        }
     }
 
     private fun bindFixManagerService() {

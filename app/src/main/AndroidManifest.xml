@@ -35,6 +35,10 @@
                 <action android:name="com.ysy.aidlservice.FixManagerService" />
             </intent-filter>
         </service>
+
+        <activity
+            android:label="FFClient"
+            android:name=".OpenActivity" />
     </application>
 
 </manifest>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
-    tools:context=".MainActivity">
+    tools:context=".OpenActivity">
 
     <TextView
         android:id="@+id/tv_version"
@@ -27,11 +27,11 @@
         android:layout_below="@+id/btn_query_patch"
         android:text="立即生效" />
 
-    <Button
-        android:id="@+id/btn_open_new"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_apply_patch"
-        android:text="新增组件" />
+    <!--<Button-->
+    <!--android:id="@+id/btn_open_new"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/btn_apply_patch"-->
+    <!--android:text="新增组件" />-->
 
 </RelativeLayout>

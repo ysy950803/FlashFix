@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">FlashFix</string>
+    <string name="app_name">FFServer</string>
     <string name="action_settings">Settings</string>
 </resources>

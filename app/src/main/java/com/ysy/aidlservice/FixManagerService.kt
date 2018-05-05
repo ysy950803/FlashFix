@@ -4,11 +4,8 @@ import android.app.ActivityManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.os.Handler
 import android.os.IBinder
-import android.os.Process
 import android.os.RemoteException
-import android.widget.Toast
 import com.ysy.flashfix.IFixManagerService
 
 class FixManagerService : Service() {
@@ -21,15 +18,16 @@ class FixManagerService : Service() {
     }
 
     private fun restartClient(pid: Int) {
-//        Process.killProcess(pid)
-//        (getSystemService(Context.ACTIVITY_SERVICE)
-//                as ActivityManager).restartPackage("com.ysy.sophix")
+        println("pid:$pid")
         Thread(Runnable {
-//            Thread.sleep(1000)
+            Thread.sleep(100)
             val intent = Intent()
             intent.setClassName("com.ysy.sophix", "com.ysy.sophix.MainActivity")
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
+//            (getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager)
+//                    .killBackgroundProcesses("com.ysy.flashfix")
+//            System.exit(0)
         }).start()
     }
 

@@ -1,5 +1,6 @@
 package com.ysy.flashfix
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
@@ -7,6 +8,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.ysy.external.IPlugin
 import dalvik.system.DexClassLoader
 
@@ -48,13 +50,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
+        sample_text.text = stringFromJNI()
+
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "成功加载新类", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
             refreshText()
         }
-
-        sample_text.text = stringFromJNI()
     }
 
     private fun showClassLoaderInfo() {
@@ -66,7 +68,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun refreshText() {
-        sample_text.text = getTextFromPlugin()
+        val str = getTextFromPlugin()
+        sample_text.text = str
+
+        if (str == "Success") {
+            btn_open_client.visibility = View.VISIBLE
+            btn_open_client.setOnClickListener {
+                startActivity(Intent(this, OpenActivity::class.java))
+            }
+        }
     }
 
     private fun getTextFromPlugin(): String {
@@ -90,22 +100,22 @@ class MainActivity : AppCompatActivity() {
         return "Fail"
     }
 
-    private fun startTimer() {
-        Handler().postDelayed({
-            run()
-        }, 2000)
-    }
-
-    private fun run() {
-        try {
-            val cl = HotSwapCL(Environment.getExternalStorageDirectory().path, arrayOf("Foo"))
-            val cls = cl.loadClass("Foo")
-            val foo = cls.newInstance()
-
-            val method = foo.javaClass.getMethod("sayHello", *arrayOf())
-            method.invoke(foo, arrayOf<Any>())
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
+//    private fun startTimer() {
+//        Handler().postDelayed({
+//            run()
+//        }, 2000)
+//    }
+//
+//    private fun run() {
+//        try {
+//            val cl = HotSwapCL(Environment.getExternalStorageDirectory().path, arrayOf("Foo"))
+//            val cls = cl.loadClass("Foo")
+//            val foo = cls.newInstance()
+//
+//            val method = foo.javaClass.getMethod("sayHello", *arrayOf())
+//            method.invoke(foo, arrayOf<Any>())
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
+//    }
 }
