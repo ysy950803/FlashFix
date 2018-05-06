@@ -1,1 +1,1 @@
-include ':app', ':sophix', ':robust', ':rocoofix'
+include ':app', ':sophix'
