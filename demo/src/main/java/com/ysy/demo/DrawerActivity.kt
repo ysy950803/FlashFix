@@ -34,7 +34,7 @@ class DrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
-        addNewMenuItem = nav_view.menu.findItem(R.id.nav_slideshow) as MenuItem
+        addNewMenuItem = nav_view.menu.findItem(R.id.nav_manage) as MenuItem
         addNewMenuItem.isVisible = false
     }
 
