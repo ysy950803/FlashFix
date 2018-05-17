@@ -1,5 +1,7 @@
 package com.ysy.flashfix
 
+import android.app.ActivityManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
@@ -53,9 +55,18 @@ class MainActivity : AppCompatActivity() {
         sample_text.text = stringFromJNI()
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "成功加载新类", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-            refreshText()
+            Thread(Runnable {
+                (getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager)
+                        .killBackgroundProcesses("com.ysy.sophix")
+                Thread.sleep(1024)
+                val intent = Intent()
+                intent.setClassName("com.ysy.sophix", "com.ysy.sophix.MainActivity")
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+            }).start()
+//            Snackbar.make(view, "成功加载新类", Snackbar.LENGTH_LONG)
+//                    .setAction("Action", null).show()
+//            refreshText()
         }
     }
 

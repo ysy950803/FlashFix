@@ -18,16 +18,14 @@ class FixManagerService : Service() {
     }
 
     private fun restartClient(pid: Int) {
-        println("pid:$pid")
         Thread(Runnable {
-            Thread.sleep(100)
+            (getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager)
+                    .killBackgroundProcesses("com.ysy.sophix")
+            Thread.sleep(1024)
             val intent = Intent()
             intent.setClassName("com.ysy.sophix", "com.ysy.sophix.MainActivity")
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
-//            (getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager)
-//                    .killBackgroundProcesses("com.ysy.flashfix")
-//            System.exit(0)
         }).start()
     }
 

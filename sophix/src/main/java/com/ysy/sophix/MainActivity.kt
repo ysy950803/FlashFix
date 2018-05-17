@@ -11,20 +11,29 @@ import android.widget.Toast
 
 import com.taobao.sophix.SophixManager
 import com.ysy.flashfix.IFixManagerService
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private var mFixManagerService: IFixManagerService? = null
+    private var mTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        mTime = System.currentTimeMillis()
         initViews()
         bindFixManagerService()
     }
 
+    override fun onResume() {
+        super.onResume()
+        Toast.makeText(this, "" + mTime + " " + Process.myPid(), Toast.LENGTH_SHORT).show()
+    }
+
     private fun initViews() {
+        tv_version.text = "" + mTime + " " + Process.myPid()
+
         findViewById<View>(R.id.btn_query_patch).setOnClickListener {
             SophixManager.getInstance().queryAndLoadNewPatch()
             Handler().postDelayed({
@@ -34,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<View>(R.id.btn_apply_patch).setOnClickListener {
             notifyPatched()
-            Process.killProcess(Process.myPid())
+//            Process.killProcess(Process.myPid())
         }
 
         findViewById<View>(R.id.btn_open_new).setOnClickListener {
