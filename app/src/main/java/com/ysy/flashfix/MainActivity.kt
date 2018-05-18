@@ -22,6 +22,7 @@ import dalvik.system.DexClassLoader
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.io.File
+import com.didi.virtualapk.PluginManager
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,6 +37,14 @@ class MainActivity : AppCompatActivity() {
         showClassLoaderInfo()
         initViews()
 //        startTimer()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+            } else {
+                initPlugin()
+            }
+        }
     }
 
     override fun onDestroy() {
@@ -68,15 +77,18 @@ class MainActivity : AppCompatActivity() {
         sample_text.text = stringFromJNI()
 
         fab.setOnClickListener { view ->
-            Thread(Runnable {
-                (getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager)
-                        .killBackgroundProcesses("com.ysy.sophix")
-                Thread.sleep(1024)
-                val intent = Intent()
-                intent.setClassName("com.ysy.sophix", "com.ysy.sophix.MainActivity")
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(intent)
-            }).start()
+            val intent = Intent()
+            intent.setClassName("com.ysy.sophix", "com.ysy.sophix.ScrollingActivity")
+            startActivity(intent)
+//            Thread(Runnable {
+//                (getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager)
+//                        .killBackgroundProcesses("com.ysy.sophix")
+//                Thread.sleep(1024)
+//                val intent = Intent()
+//                intent.setClassName("com.ysy.sophix", "com.ysy.sophix.MainActivity")
+//                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//                startActivity(intent)
+//            }).start()
 //            Snackbar.make(view, "成功加载新类", Snackbar.LENGTH_LONG)
 //                    .setAction("Action", null).show()
 //            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -89,10 +101,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun initPlugin() {
+        try {
+            val pluginPath = Environment.getExternalStorageDirectory().absolutePath + "/sophix-release.apk"
+            val plugin = File(pluginPath)
+            PluginManager.getInstance(this).loadPlugin(plugin)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            refreshText()
+//            refreshText()
+            initPlugin()
         }
     }
 
@@ -105,15 +128,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun refreshText() {
-        val str = getTextFromPlugin()
-        sample_text.text = str
-
-        if (str == "Success") {
-            btn_open_client.visibility = View.VISIBLE
-            btn_open_client.setOnClickListener {
-                startActivity(Intent(this, OpenActivity::class.java))
-            }
-        }
+//        val str = getTextFromPlugin()
+//        sample_text.text = str
+//
+//        if (str == "Success") {
+//            btn_open_client.visibility = View.VISIBLE
+//            btn_open_client.setOnClickListener {
+//                startActivity(Intent(this, OpenActivity::class.java))
+//            }
+//        }
     }
 
     private fun getTextFromPlugin(): String {
