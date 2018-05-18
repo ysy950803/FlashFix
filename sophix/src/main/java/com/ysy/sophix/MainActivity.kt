@@ -77,12 +77,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun notifyPatched() {
-        if (mFixManagerService != null) {
-            try {
-                mFixManagerService!!.notifyPatched(Process.myPid())
-            } catch (e: RemoteException) {
-                e.printStackTrace()
-            }
-        }
+        sendBroadcast(Intent("notifyPatched"))
+
+        val home = Intent(Intent.ACTION_MAIN)
+        home.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        home.addCategory(Intent.CATEGORY_HOME)
+        startActivity(home)
+//        if (mFixManagerService != null) {
+//            try {
+//                mFixManagerService!!.notifyPatched(Process.myPid())
+//            } catch (e: RemoteException) {
+//                e.printStackTrace()
+//            }
+//        }
     }
 }
