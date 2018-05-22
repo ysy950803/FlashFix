@@ -1,6 +1,5 @@
 package com.ysy.movieguide.listing;
 
-
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -31,6 +30,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public class MoviesListingFragment extends Fragment implements MoviesListingView {
+
     @Inject
     MoviesListingPresenter moviesPresenter;
 
@@ -177,6 +177,4 @@ public class MoviesListingFragment extends Fragment implements MoviesListingView
 
         void onMovieClicked(Movie movie);
     }
-
-
 }

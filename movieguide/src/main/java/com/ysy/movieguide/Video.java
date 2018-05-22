@@ -5,10 +5,8 @@ import android.os.Parcelable;
 
 import com.squareup.moshi.Json;
 
-/**
- * @author arun
- */
 public class Video implements Parcelable {
+
     public static final String SITE_YOUTUBE = "YouTube";
 
     private String id;
@@ -20,10 +18,9 @@ public class Video implements Parcelable {
     private String type;
 
     public Video() {
-
     }
 
-    protected Video(Parcel in) {
+    private Video(Parcel in) {
         id = in.readString();
         name = in.readString();
         site = in.readString();
@@ -33,6 +30,7 @@ public class Video implements Parcelable {
     }
 
     public static final Creator<Video> CREATOR = new Creator<Video>() {
+
         @Override
         public Video createFromParcel(Parcel in) {
             return new Video(in);

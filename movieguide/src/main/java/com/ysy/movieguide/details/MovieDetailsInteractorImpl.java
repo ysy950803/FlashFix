@@ -10,9 +10,6 @@ import java.util.List;
 
 import io.reactivex.Observable;
 
-/**
- * @author arun
- */
 class MovieDetailsInteractorImpl implements MovieDetailsInteractor {
 
     private TmdbWebService tmdbWebService;
@@ -30,5 +27,4 @@ class MovieDetailsInteractorImpl implements MovieDetailsInteractor {
     public Observable<List<Review>> getReviews(final String id) {
         return tmdbWebService.reviews(id).map(ReviewsWrapper::getReviews);
     }
-
 }

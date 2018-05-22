@@ -1,13 +1,9 @@
 package com.ysy.movieguide.details;
 
-
 import com.ysy.movieguide.Movie;
 
-/**
- * @author arun
- */
-public interface MovieDetailsPresenter
-{
+public interface MovieDetailsPresenter {
+
     void showDetails(Movie movie);
 
     void showTrailers(Movie movie);

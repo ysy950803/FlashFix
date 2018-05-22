@@ -4,10 +4,6 @@ import com.squareup.moshi.Json;
 
 import java.util.List;
 
-/**
- * Created by ivan on 8/20/2017.
- */
-
 public class VideoWrapper {
 
     @Json(name = "results")
@@ -20,5 +16,4 @@ public class VideoWrapper {
     public void setVideos(List<Video> videos) {
         this.videos = videos;
     }
-
 }

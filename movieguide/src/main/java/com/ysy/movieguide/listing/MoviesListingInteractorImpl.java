@@ -14,10 +14,8 @@ import java.util.List;
 
 import io.reactivex.Observable;
 
-/**
- * @author arun
- */
 class MoviesListingInteractorImpl implements MoviesListingInteractor {
+
     private FavoritesInteractor favoritesInteractor;
     private TmdbWebService tmdbWebService;
     private SortingOptionStore sortingOptionStore;
@@ -30,7 +28,6 @@ class MoviesListingInteractorImpl implements MoviesListingInteractor {
         this.tmdbWebService = tmdbWebService;
         sortingOptionStore = store;
     }
-
 
     @Override
     public boolean isPaginationSupported() {
@@ -53,5 +50,4 @@ class MoviesListingInteractorImpl implements MoviesListingInteractor {
             return Observable.just(favoritesInteractor.getFavorites());
         }
     }
-
 }

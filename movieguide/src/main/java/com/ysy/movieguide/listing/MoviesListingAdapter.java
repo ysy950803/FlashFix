@@ -26,10 +26,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * @author arun
- */
 public class MoviesListingAdapter extends RecyclerView.Adapter<MoviesListingAdapter.ViewHolder> {
+
     private List<Movie> movies;
     private Context context;
     private MoviesListingView view;
@@ -55,7 +53,7 @@ public class MoviesListingAdapter extends RecyclerView.Adapter<MoviesListingAdap
         }
     }
 
-    public MoviesListingAdapter(List<Movie> movies, MoviesListingView moviesView) {
+    MoviesListingAdapter(List<Movie> movies, MoviesListingView moviesView) {
         this.movies = movies;
         view = moviesView;
     }

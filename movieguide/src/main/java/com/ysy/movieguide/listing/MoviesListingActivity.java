@@ -13,6 +13,7 @@ import com.ysy.movieguide.details.MovieDetailsActivity;
 import com.ysy.movieguide.details.MovieDetailsFragment;
 
 public class MoviesListingActivity extends AppCompatActivity implements MoviesListingFragment.Callback {
+
     public static final String DETAILS_FRAGMENT = "DetailsFragment";
     private boolean twoPaneMode;
 

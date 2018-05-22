@@ -17,24 +17,18 @@ import javax.inject.Inject;
 
 import javax.inject.Singleton;
 
-/**
- * @author arun
- */
 @Singleton
-public class FavoritesStore
-{
+public class FavoritesStore {
 
     private static final String PREF_NAME = "FavoritesStore";
     private SharedPreferences pref;
 
     @Inject
-    public FavoritesStore(Context context)
-    {
+    FavoritesStore(Context context) {
         pref = context.getApplicationContext().getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
     }
 
-    public void setFavorite(Movie movie)
-    {
+    public void setFavorite(Movie movie) {
         SharedPreferences.Editor editor = pref.edit();
         Moshi moshi = new Moshi.Builder().build();
         JsonAdapter<Movie> jsonAdapter = moshi.adapter(Movie.class);
@@ -43,45 +37,32 @@ public class FavoritesStore
         editor.apply();
     }
 
-    public boolean isFavorite(String id)
-    {
+    public boolean isFavorite(String id) {
         String movieJson = pref.getString(id, null);
-
-        if (!TextUtils.isEmpty(movieJson))
-        {
-            return true;
-        } else
-        {
-            return false;
-        }
+        return !TextUtils.isEmpty(movieJson);
     }
 
-    public List<Movie> getFavorites() throws IOException
-    {
+    public List<Movie> getFavorites() throws IOException {
         Map<String, ?> allEntries = pref.getAll();
         ArrayList<Movie> movies = new ArrayList<>(24);
         Moshi moshi = new Moshi.Builder().build();
 
-        for (Map.Entry<String, ?> entry : allEntries.entrySet())
-        {
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
             String movieJson = pref.getString(entry.getKey(), null);
 
-            if (!TextUtils.isEmpty(movieJson))
-            {
+            if (!TextUtils.isEmpty(movieJson)) {
                 JsonAdapter<Movie> jsonAdapter = moshi.adapter(Movie.class);
 
                 Movie movie = jsonAdapter.fromJson(movieJson);
                 movies.add(movie);
-            } else
-            {
+            } else {
                 // Do nothing;
             }
         }
         return movies;
     }
 
-    public void unfavorite(String id)
-    {
+    public void unfavorite(String id) {
         SharedPreferences.Editor editor = pref.edit();
         editor.remove(id);
         editor.apply();

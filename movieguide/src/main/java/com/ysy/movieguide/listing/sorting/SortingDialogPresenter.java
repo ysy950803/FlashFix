@@ -1,10 +1,7 @@
 package com.ysy.movieguide.listing.sorting;
 
-/**
- * @author arun
- */
-public interface SortingDialogPresenter
-{
+public interface SortingDialogPresenter {
+
     void setLastSavedOption();
 
     void onPopularMoviesSelected();

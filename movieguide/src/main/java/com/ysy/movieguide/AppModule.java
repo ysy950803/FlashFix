@@ -9,31 +9,24 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-/**
- * @author arunsasidharan
- * @author pulkitkumar
- */
 @Module
-public class AppModule
-{
+public class AppModule {
+
     private Context context;
 
-    AppModule(Application application)
-    {
+    AppModule(Application application) {
         context = application;
     }
 
     @Provides
     @Singleton
-    public Context provideContext()
-    {
+    public Context provideContext() {
         return context;
     }
 
     @Provides
     @Singleton
-    public Resources provideResources(Context context)
-    {
+    public Resources provideResources(Context context) {
         return context.getResources();
     }
 }

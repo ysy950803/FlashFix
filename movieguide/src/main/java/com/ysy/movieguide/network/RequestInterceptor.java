@@ -12,15 +12,11 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- * Created by ivan on 8/20/2017.
- */
-
 @Singleton
 public class RequestInterceptor implements Interceptor {
 
     @Inject
-    public RequestInterceptor() {
+    RequestInterceptor() {
     }
 
     @Override

@@ -9,10 +9,6 @@ import retrofit2.http.Path;
 import io.reactivex.Observable;
 import retrofit2.http.Query;
 
-/**
- * Created by ivan on 8/20/2017.
- */
-
 public interface TmdbWebService {
 
     @GET("3/discover/movie?language=en&sort_by=popularity.desc")
@@ -29,5 +25,4 @@ public interface TmdbWebService {
 
     @GET("3/movie/{movieId}/reviews")
     Observable<ReviewsWrapper> reviews(@Path("movieId") String movieId);
-
 }

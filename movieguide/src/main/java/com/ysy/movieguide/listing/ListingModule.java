@@ -7,12 +7,9 @@ import com.ysy.movieguide.network.TmdbWebService;
 import dagger.Module;
 import dagger.Provides;
 
-/**
- * @author pulkitkumar
- * @author arunsasidharan
- */
 @Module
 public class ListingModule {
+
     @Provides
     MoviesListingInteractor provideMovieListingInteractor(FavoritesInteractor favoritesInteractor,
                                                           TmdbWebService tmdbWebService,
