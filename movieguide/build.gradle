@@ -8,7 +8,7 @@ def getProperty(String filename, String propName) {
         if (props[propName] != null) {
             return props[propName]
         } else {
-            print("No such property " + propName + " in file " + filename);
+            print("No such property " + propName + " in file " + filename)
         }
     } else {
         print(filename + " does not exist!")
@@ -78,7 +78,7 @@ dependencies {
 
     // Other
     implementation 'net.jcip:jcip-annotations:1.0'
-    implementation 'com.squareup.moshi:moshi:1.1.0'
+    implementation 'com.squareup.moshi:moshi:1.4.0'
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
@@ -91,8 +91,4 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     implementation 'com.squareup.retrofit2:converter-moshi:2.3.0'
-}
-
-repositories {
-    mavenCentral()
 }

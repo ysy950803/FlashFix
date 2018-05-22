@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <RadioGroup
         android:id="@+id/sorting_group"
@@ -19,7 +19,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
-            android:text="@string/most_popular"/>
+            android:text="@string/most_popular" />
 
         <RadioButton
             android:id="@+id/highest_rated"
@@ -29,7 +29,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
-            android:text="@string/highest_rated"/>
+            android:text="@string/highest_rated" />
 
         <RadioButton
             android:id="@+id/favorites"
@@ -39,7 +39,8 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
-            android:text="@string/favorites"/>
+            android:text="@string/favorites" />
+
         <RadioButton
             android:id="@+id/newest"
             android:layout_width="wrap_content"
@@ -48,7 +49,8 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="8dp"
-            android:text="@string/newest"/>
+            android:text="@string/newest" />
 
     </RadioGroup>
+
 </LinearLayout>
