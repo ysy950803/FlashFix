@@ -39,10 +39,10 @@ dependencies {
     implementation 'com.aliyun.ams:alicloud-android-hotfix:3.2.1'
 }
 
-apply plugin: 'com.didi.virtualapk.plugin'
+//apply plugin: 'com.didi.virtualapk.plugin'
 
-virtualApk {
-    packageId = 0x6f             // The package id of Resources.
-    targetHost='../../FlashFix/app' // The path of application module in host project.
-    applyHostMapping = true      // [Optional] Default value is true.
-}
+//virtualApk {
+//    packageId = 0x6f             // The package id of Resources.
+//    targetHost='../../FlashFix/app' // The path of application module in host project.
+//    applyHostMapping = true      // [Optional] Default value is true.
+//}

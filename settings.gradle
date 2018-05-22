@@ -1,1 +1,1 @@
-include ':app', ':sophix', ':demo'
+include ':app', ':sophix', ':demo', ':movieguide'

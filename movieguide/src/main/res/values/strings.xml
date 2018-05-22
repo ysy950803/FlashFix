@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MovieGuide</string>
+    <string name="hello_world">Hello World</string>
+    <string name="movie_guide">MovieGuide</string>
+</resources>
