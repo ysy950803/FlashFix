@@ -93,6 +93,7 @@ public class FixSettingsActivity extends AppCompatActivity {
                 Toast.makeText(this, "重置成功", Toast.LENGTH_SHORT).show();
             } else {
                 mDataUtils.saveData(Constants.SP_UPDATE, true);
+                Toast.makeText(this, "热修复成功", Toast.LENGTH_SHORT).show();
             }
             initData();
         }));

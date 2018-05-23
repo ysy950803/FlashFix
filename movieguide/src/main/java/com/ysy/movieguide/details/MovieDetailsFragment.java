@@ -152,6 +152,9 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView, 
             poster.setVisibility(View.VISIBLE);
             appBarLayout.setExpanded(true);
             nestedScrollView.setNestedScrollingEnabled(true);
+            AppBarLayout.LayoutParams p = (AppBarLayout.LayoutParams) collapsingToolbar.getLayoutParams();
+            p.setScrollFlags(p.getScrollFlags() | AppBarLayout.LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED);
+            collapsingToolbar.setLayoutParams(p);
         }
 
         favorite.setVisibility(dataUtils.getData(Constants.SP_FAV) ? View.VISIBLE : View.GONE);

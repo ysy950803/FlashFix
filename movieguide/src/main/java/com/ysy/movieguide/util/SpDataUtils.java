@@ -28,6 +28,6 @@ public class SpDataUtils {
 
     public boolean getData(String key) {
         SharedPreferences sp = mContext.getSharedPreferences(key, Context.MODE_PRIVATE);
-        return sp.getBoolean(key, false);
+        return sp.getBoolean(key, true);
     }
 }
