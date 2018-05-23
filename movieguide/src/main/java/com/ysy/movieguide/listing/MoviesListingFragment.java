@@ -21,6 +21,7 @@ import com.ysy.movieguide.flashfix.FixSettingsActivity;
 import com.ysy.movieguide.model.Movie;
 import com.ysy.movieguide.R;
 import com.ysy.movieguide.listing.sorting.SortingDialogFragment;
+import com.ysy.movieguide.util.SpDataUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,7 @@ public class MoviesListingFragment extends Fragment implements MoviesListingView
     private List<Movie> movies = new ArrayList<>(20);
     private Callback callback;
     private Unbinder unbinder;
+    private int mLastColNum = 2;
 
     public MoviesListingFragment() {
         // Required empty public constructor
@@ -93,6 +95,16 @@ public class MoviesListingFragment extends Fragment implements MoviesListingView
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        int colNum = getColNum();
+        if (mLastColNum != colNum) {
+            mLastColNum = colNum;
+            initListView(colNum);
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_sort:
@@ -119,13 +131,27 @@ public class MoviesListingFragment extends Fragment implements MoviesListingView
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             columns = 2;
         } else {
-            columns = getResources().getInteger(R.integer.no_of_columns);
+//            columns = getResources().getInteger(R.integer.no_of_columns);
+            columns = getColNum();
         }
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), columns);
+        mLastColNum = columns;
+        initListView(columns);
+    }
 
+    private void initListView(int columns) {
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), columns);
         moviesListing.setLayoutManager(layoutManager);
         adapter = new MoviesListingAdapter(movies, this);
         moviesListing.setAdapter(adapter);
+    }
+
+    private int getColNum() {
+        SpDataUtils dataUtils = SpDataUtils.getsInstance(getContext());
+        if (dataUtils.getData(Constants.SP_COL_NUM)) {
+            return 3;
+        } else {
+            return 2;
+        }
     }
 
     @Override
@@ -179,6 +205,7 @@ public class MoviesListingFragment extends Fragment implements MoviesListingView
 
     public interface Callback {
         void onMoviesLoaded(Movie movie);
+
         void onMovieClicked(Movie movie);
     }
 }

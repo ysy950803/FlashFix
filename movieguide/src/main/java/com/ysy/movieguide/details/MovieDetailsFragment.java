@@ -5,10 +5,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -29,6 +31,7 @@ import com.ysy.movieguide.model.Movie;
 import com.ysy.movieguide.R;
 import com.ysy.movieguide.model.Review;
 import com.ysy.movieguide.model.Video;
+import com.ysy.movieguide.util.SpDataUtils;
 
 import java.util.List;
 
@@ -44,6 +47,10 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView, 
     @Inject
     MovieDetailsPresenter movieDetailsPresenter;
 
+    @BindView(R.id.appbar)
+    AppBarLayout appBarLayout;
+    @BindView(R.id.scrolling_container)
+    NestedScrollView nestedScrollView;
     @BindView(R.id.movie_poster)
     ImageView poster;
     @BindView(R.id.collapsing_toolbar)
@@ -99,7 +106,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView, 
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_movie_details, container, false);
         unbinder = ButterKnife.bind(this, rootView);
-        setToolbar();
+        initViews();
         return rootView;
     }
 
@@ -117,7 +124,7 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView, 
         }
     }
 
-    private void setToolbar() {
+    private void initViews() {
         collapsingToolbar.setContentScrimColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
         collapsingToolbar.setTitle(getString(R.string.movie_details));
         collapsingToolbar.setCollapsedTitleTextAppearance(R.style.CollapsedToolbar);
@@ -134,6 +141,20 @@ public class MovieDetailsFragment extends Fragment implements MovieDetailsView, 
         } else {
             // Don't inflate. Tablet is in landscape mode.
         }
+
+        SpDataUtils dataUtils = SpDataUtils.getsInstance(getContext());
+        boolean isTopPicShow = dataUtils.getData(Constants.SP_TOP_PIC);
+        if (!isTopPicShow) {
+            poster.setVisibility(View.GONE);
+            appBarLayout.setExpanded(false);
+            nestedScrollView.setNestedScrollingEnabled(false);
+        } else {
+            poster.setVisibility(View.VISIBLE);
+            appBarLayout.setExpanded(true);
+            nestedScrollView.setNestedScrollingEnabled(true);
+        }
+
+        favorite.setVisibility(dataUtils.getData(Constants.SP_FAV) ? View.VISIBLE : View.GONE);
     }
 
     @Override

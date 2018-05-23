@@ -73,9 +73,10 @@ public class SortingDialogFragment extends DialogFragment implements SortingDial
     private void initViews() {
         SpDataUtils dataUtils = SpDataUtils.getsInstance(getContext());
         boolean isRateShow = dataUtils.getData(Constants.SP_RATE_SORT);
-        highestRated.setVisibility(isRateShow ?
-                View.VISIBLE : View.GONE);
-        if (!isRateShow) {
+        boolean isFavShow = dataUtils.getData(Constants.SP_FAV);
+        highestRated.setVisibility(isRateShow ? View.VISIBLE : View.GONE);
+        favorites.setVisibility(isFavShow ? View.VISIBLE : View.GONE);
+        if (!isRateShow || !isFavShow) {
             mostPopular.setChecked(true);
         }
 
