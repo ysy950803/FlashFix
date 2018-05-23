@@ -1,8 +1,8 @@
 package com.ysy.movieguide.details;
 
-import com.ysy.movieguide.Movie;
-import com.ysy.movieguide.Review;
-import com.ysy.movieguide.Video;
+import com.ysy.movieguide.model.Movie;
+import com.ysy.movieguide.model.Review;
+import com.ysy.movieguide.model.Video;
 import com.ysy.movieguide.favorites.FavoritesInteractor;
 import com.ysy.movieguide.util.RxUtils;
 

@@ -1,7 +1,7 @@
 package com.ysy.movieguide.listing;
 
-import com.ysy.movieguide.Movie;
-import com.ysy.movieguide.MoviesWraper;
+import com.ysy.movieguide.model.Movie;
+import com.ysy.movieguide.model.MoviesWrapper;
 import com.ysy.movieguide.favorites.FavoritesInteractor;
 import com.ysy.movieguide.listing.sorting.SortType;
 import com.ysy.movieguide.listing.sorting.SortingOptionStore;
@@ -39,13 +39,13 @@ class MoviesListingInteractorImpl implements MoviesListingInteractor {
     public Observable<List<Movie>> fetchMovies(int page) {
         int selectedOption = sortingOptionStore.getSelectedOption();
         if (selectedOption == SortType.MOST_POPULAR.getValue()) {
-            return tmdbWebService.popularMovies(page).map(MoviesWraper::getMovieList);
+            return tmdbWebService.popularMovies(page).map(MoviesWrapper::getMovieList);
         } else if (selectedOption == SortType.HIGHEST_RATED.getValue()) {
-            return tmdbWebService.highestRatedMovies(page).map(MoviesWraper::getMovieList);
+            return tmdbWebService.highestRatedMovies(page).map(MoviesWrapper::getMovieList);
         } else if (selectedOption == SortType.NEWEST.getValue()) {
             Calendar cal = Calendar.getInstance();
             String maxReleaseDate = dateFormat.format(cal.getTime());
-            return tmdbWebService.newestMovies(maxReleaseDate, NEWEST_MIN_VOTE_COUNT).map(MoviesWraper::getMovieList);
+            return tmdbWebService.newestMovies(maxReleaseDate, NEWEST_MIN_VOTE_COUNT).map(MoviesWrapper::getMovieList);
         } else {
             return Observable.just(favoritesInteractor.getFavorites());
         }

@@ -1,9 +1,11 @@
-package com.ysy.movieguide;
+package com.ysy.movieguide.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.squareup.moshi.Json;
+import com.ysy.movieguide.Api;
+import com.ysy.movieguide.Constants;
 
 public class Video implements Parcelable {
 

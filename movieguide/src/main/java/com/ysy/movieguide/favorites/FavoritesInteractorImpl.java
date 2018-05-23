@@ -1,6 +1,6 @@
 package com.ysy.movieguide.favorites;
 
-import com.ysy.movieguide.Movie;
+import com.ysy.movieguide.model.Movie;
 
 import java.io.IOException;
 import java.util.ArrayList;

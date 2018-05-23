@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
 import com.ysy.movieguide.Constants;
-import com.ysy.movieguide.Movie;
+import com.ysy.movieguide.model.Movie;
 import com.ysy.movieguide.R;
 import com.ysy.movieguide.details.MovieDetailsActivity;
 import com.ysy.movieguide.details.MovieDetailsFragment;

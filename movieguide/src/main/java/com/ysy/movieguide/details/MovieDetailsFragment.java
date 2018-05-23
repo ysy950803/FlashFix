@@ -25,10 +25,10 @@ import com.bumptech.glide.request.RequestOptions;
 import com.ysy.movieguide.Api;
 import com.ysy.movieguide.BaseApplication;
 import com.ysy.movieguide.Constants;
-import com.ysy.movieguide.Movie;
+import com.ysy.movieguide.model.Movie;
 import com.ysy.movieguide.R;
-import com.ysy.movieguide.Review;
-import com.ysy.movieguide.Video;
+import com.ysy.movieguide.model.Review;
+import com.ysy.movieguide.model.Video;
 
 import java.util.List;
 

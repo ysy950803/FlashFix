@@ -1,6 +1,7 @@
 package com.ysy.movieguide.listing;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -16,7 +17,8 @@ import android.view.ViewGroup;
 
 import com.ysy.movieguide.BaseApplication;
 import com.ysy.movieguide.Constants;
-import com.ysy.movieguide.Movie;
+import com.ysy.movieguide.flashfix.FixSettingsActivity;
+import com.ysy.movieguide.model.Movie;
 import com.ysy.movieguide.R;
 import com.ysy.movieguide.listing.sorting.SortingDialogFragment;
 
@@ -96,6 +98,10 @@ public class MoviesListingFragment extends Fragment implements MoviesListingView
             case R.id.action_sort:
                 moviesPresenter.setView(this);
                 displaySortingOptions();
+                break;
+            case R.id.action_settings:
+                startActivity(new Intent(getContext(), FixSettingsActivity.class));
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -171,10 +177,8 @@ public class MoviesListingFragment extends Fragment implements MoviesListingView
         outState.putParcelableArrayList(Constants.MOVIE, (ArrayList<? extends Parcelable>) movies);
     }
 
-
     public interface Callback {
         void onMoviesLoaded(Movie movie);
-
         void onMovieClicked(Movie movie);
     }
 }

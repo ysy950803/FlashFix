@@ -6,7 +6,7 @@ import android.text.TextUtils;
 
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
-import com.ysy.movieguide.Movie;
+import com.ysy.movieguide.model.Movie;
 
 import java.io.IOException;
 import java.util.ArrayList;

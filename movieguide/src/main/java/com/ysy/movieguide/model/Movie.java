@@ -1,4 +1,4 @@
-package com.ysy.movieguide;
+package com.ysy.movieguide.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

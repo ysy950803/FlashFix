@@ -12,8 +12,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.ysy.movieguide.BaseApplication;
+import com.ysy.movieguide.Constants;
 import com.ysy.movieguide.R;
 import com.ysy.movieguide.listing.MoviesListingPresenter;
+import com.ysy.movieguide.util.SpDataUtils;
 
 import javax.inject.Inject;
 
@@ -69,6 +71,14 @@ public class SortingDialogFragment extends DialogFragment implements SortingDial
     }
 
     private void initViews() {
+        SpDataUtils dataUtils = SpDataUtils.getsInstance(getContext());
+        boolean isRateShow = dataUtils.getData(Constants.SP_RATE_SORT);
+        highestRated.setVisibility(isRateShow ?
+                View.VISIBLE : View.GONE);
+        if (!isRateShow) {
+            mostPopular.setChecked(true);
+        }
+
         sortingDialogPresenter.setLastSavedOption();
         sortingOptionsGroup.setOnCheckedChangeListener(this);
     }
@@ -101,12 +111,10 @@ public class SortingDialogFragment extends DialogFragment implements SortingDial
                 sortingDialogPresenter.onPopularMoviesSelected();
                 moviesListingPresenter.firstPage();
                 break;
-
             case R.id.highest_rated:
                 sortingDialogPresenter.onHighestRatedMoviesSelected();
                 moviesListingPresenter.firstPage();
                 break;
-
             case R.id.favorites:
                 sortingDialogPresenter.onFavoritesSelected();
                 moviesListingPresenter.firstPage();

@@ -1,9 +1,9 @@
 package com.ysy.movieguide.details;
 
-import com.ysy.movieguide.Review;
-import com.ysy.movieguide.ReviewsWrapper;
-import com.ysy.movieguide.Video;
-import com.ysy.movieguide.VideoWrapper;
+import com.ysy.movieguide.model.Review;
+import com.ysy.movieguide.model.ReviewsWrapper;
+import com.ysy.movieguide.model.Video;
+import com.ysy.movieguide.model.VideoWrapper;
 import com.ysy.movieguide.network.TmdbWebService;
 
 import java.util.List;

@@ -18,7 +18,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.ysy.movieguide.Api;
-import com.ysy.movieguide.Movie;
+import com.ysy.movieguide.model.Movie;
 import com.ysy.movieguide.R;
 
 import java.util.List;

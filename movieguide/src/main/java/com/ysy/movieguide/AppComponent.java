@@ -17,8 +17,6 @@ import dagger.Component;
         NetworkModule.class,
         FavoritesModule.class})
 public interface AppComponent {
-
     DetailsComponent plus(DetailsModule detailsModule);
-
     ListingComponent plus(ListingModule listingModule);
 }

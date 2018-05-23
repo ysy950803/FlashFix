@@ -1,6 +1,6 @@
 package com.ysy.movieguide.listing;
 
-import com.ysy.movieguide.Movie;
+import com.ysy.movieguide.model.Movie;
 import com.ysy.movieguide.util.RxUtils;
 
 import java.util.ArrayList;

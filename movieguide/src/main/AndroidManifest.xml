@@ -1,7 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ysy.movieguide">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".BaseApplication"
@@ -20,12 +22,12 @@
         </activity>
         <activity
             android:name=".details.MovieDetailsActivity"
-            android:parentActivityName=".listing.MoviesListingActivity"
-            android:theme="@style/AppTheme">
+            android:parentActivityName=".listing.MoviesListingActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".listing.MoviesListingActivity" />
         </activity>
+        <activity android:name=".flashfix.FixSettingsActivity" />
     </application>
 
 </manifest>

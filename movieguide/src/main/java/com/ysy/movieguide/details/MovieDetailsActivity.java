@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.ysy.movieguide.Constants;
-import com.ysy.movieguide.Movie;
+import com.ysy.movieguide.model.Movie;
 import com.ysy.movieguide.R;
 
 public class MovieDetailsActivity extends AppCompatActivity {
@@ -33,6 +33,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 NavUtils.navigateUpFromSameTask(this);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

@@ -1,4 +1,4 @@
-package com.ysy.movieguide;
+package com.ysy.movieguide.model;
 
 import com.squareup.moshi.Json;
 
