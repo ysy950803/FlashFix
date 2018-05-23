@@ -73,27 +73,29 @@ public class FixSettingsActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         });
 
-        mClearPatchCard.setOnClickListener(v -> {
-            mDialogFactory.showResetDialog(isDebug, () -> {
-                mDataUtils.saveData(Constants.SP_FAV, false);
-                mDataUtils.saveData(Constants.SP_TOP_PIC, false);
-                mDataUtils.saveData(Constants.SP_RATE_SORT, false);
-                mDataUtils.saveData(Constants.SP_COL_NUM, false);
-                mDataUtils.saveData(Constants.SP_UPDATE, false);
-                initData();
-            });
-        });
+        mClearPatchCard.setOnClickListener(v -> mDialogFactory.showResetDialog(isDebug, () -> {
+            mDataUtils.saveData(Constants.SP_FAV, false);
+            mDataUtils.saveData(Constants.SP_TOP_PIC, false);
+            mDataUtils.saveData(Constants.SP_RATE_SORT, false);
+            mDataUtils.saveData(Constants.SP_COL_NUM, false);
+            mDataUtils.saveData(Constants.SP_UPDATE, false);
+            initData();
+        }));
 
-        mSubmitFab.setOnClickListener(v -> {
-            mDialogFactory.showFlashFixDialog(isDebug, () -> {
-                mDataUtils.saveData(Constants.SP_FAV, mFavCheckBox.isChecked());
-                mDataUtils.saveData(Constants.SP_TOP_PIC, mTopPicCheckBox.isChecked());
-                mDataUtils.saveData(Constants.SP_RATE_SORT, mRateSortCheckBox.isChecked());
-                mDataUtils.saveData(Constants.SP_COL_NUM, mColNumCheckBox.isChecked());
+        mSubmitFab.setOnClickListener(v -> mDialogFactory.showFlashFixDialog(isDebug, () -> {
+            mDataUtils.saveData(Constants.SP_FAV, mFavCheckBox.isChecked());
+            mDataUtils.saveData(Constants.SP_TOP_PIC, mTopPicCheckBox.isChecked());
+            mDataUtils.saveData(Constants.SP_RATE_SORT, mRateSortCheckBox.isChecked());
+            mDataUtils.saveData(Constants.SP_COL_NUM, mColNumCheckBox.isChecked());
+            if (!mFavCheckBox.isChecked() && !mTopPicCheckBox.isChecked()
+                    && !mRateSortCheckBox.isChecked() && !mColNumCheckBox.isChecked()) {
+                mDataUtils.saveData(Constants.SP_UPDATE, false);
+                Toast.makeText(this, "重置成功", Toast.LENGTH_SHORT).show();
+            } else {
                 mDataUtils.saveData(Constants.SP_UPDATE, true);
-                initData();
-            });
-        });
+            }
+            initData();
+        }));
 
         mLayoutFav.setOnClickListener(v -> mFavCheckBox.setChecked(!mFavCheckBox.isChecked()));
         mLayoutTopPic.setOnClickListener(v -> mTopPicCheckBox.setChecked(!mTopPicCheckBox.isChecked()));
@@ -109,8 +111,8 @@ public class FixSettingsActivity extends AppCompatActivity {
         mRateSortCheckBox.setChecked(mDataUtils.getData(Constants.SP_RATE_SORT));
         mColNumCheckBox.setChecked(mDataUtils.getData(Constants.SP_COL_NUM));
 
-        mVersionTv.setText(mDataUtils.getData(Constants.SP_UPDATE) ?
-                getString(R.string.new_version_md5) : getString(R.string.old_version_md5));
+        mVersionTv.setText(new FixVersionInfo(this, mDataUtils.getData(Constants.SP_UPDATE))
+                .getVersionInfo());
     }
 
     private void setToolbar() {

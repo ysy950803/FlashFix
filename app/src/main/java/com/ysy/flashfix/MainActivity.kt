@@ -22,7 +22,7 @@ import dalvik.system.DexClassLoader
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.io.File
-import com.didi.virtualapk.PluginManager
+//import com.didi.virtualapk.PluginManager
 
 class MainActivity : AppCompatActivity() {
 
@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
         try {
             val pluginPath = Environment.getExternalStorageDirectory().absolutePath + "/sophix-release.apk"
             val plugin = File(pluginPath)
-            PluginManager.getInstance(this).loadPlugin(plugin)
+//            PluginManager.getInstance(this).loadPlugin(plugin)
         } catch (e: Exception) {
             e.printStackTrace()
         }

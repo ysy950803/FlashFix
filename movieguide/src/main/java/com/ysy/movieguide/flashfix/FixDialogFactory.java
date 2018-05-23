@@ -3,11 +3,15 @@ package com.ysy.movieguide.flashfix;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.widget.Toast;
 
+import com.ysy.movieguide.Constants;
+import com.ysy.movieguide.R;
 import com.ysy.movieguide.util.ConnectionDetector;
+import com.ysy.movieguide.util.SpDataUtils;
 
 import java.util.Random;
 
@@ -78,14 +82,23 @@ public class FixDialogFactory {
         dialog.show();
         mHandler.postDelayed(() -> {
             dialog.dismiss();
+
+            boolean updated = SpDataUtils.getsInstance(mContext).getData(Constants.SP_UPDATE);
+            String updateMsg = "There is a new version(3.0.9) released. Confirm to download.";
+            if (updated) {
+                updateMsg = "Latest version(3.0.9).";
+            }
             AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-            builder.setTitle("Update")
-                    .setMessage("There is a new version(3.0.9) released. Confirm to download.")
-                    .setPositiveButton("Confirm", (dialog1, which) -> {
-                        // TODO
-                        dialog1.dismiss();
-                    })
-                    .setNegativeButton("Cancel", (dialog12, which) -> dialog12.dismiss()).show();
+            builder.setTitle("Update").setMessage(updateMsg);
+            if (!updated) {
+                builder.setPositiveButton("Confirm", (dialog1, which) -> {
+                    Uri uri = Uri.parse(mContext.getString(R.string.update_link));
+                    mContext.startActivity(new Intent(Intent.ACTION_VIEW, uri));
+                    dialog1.dismiss();
+                }).setNegativeButton("Cancel", (dialog12, which) -> dialog12.dismiss()).show();
+            } else {
+                builder.setNegativeButton("Go it", (dialog1, which) -> dialog1.dismiss()).show();
+            }
         }, getUploadingTime(isDebug));
     }
 

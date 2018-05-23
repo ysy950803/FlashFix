@@ -15,6 +15,5 @@
     <string name="highest_rated">Highest Rated</string>
     <string name="most_popular">Most Popular</string>
     <string name="fix_settings">热修复配置</string>
-    <string name="old_version_md5">Version 3.0.7-13b5b38a5b00b8c5649b25c8eb42c27e</string>
-    <string name="new_version_md5">Version 3.0.9-d4e6bcfabb800aed0cf51e8f21746270</string>
+    <string name="update_link">http://ysy950803.top/movieguide/movieguide-release-3.0.9.apk</string>
 </resources>
