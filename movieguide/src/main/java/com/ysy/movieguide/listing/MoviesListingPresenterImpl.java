@@ -64,6 +64,7 @@ class MoviesListingPresenterImpl implements MoviesListingPresenter {
     }
 
     private void onMovieFetchSuccess(List<Movie> movies) {
+        filterMovies(movies);
         if (moviesInteractor.isPaginationSupported()) {
             loadedMovies.addAll(movies);
         } else {
@@ -80,5 +81,16 @@ class MoviesListingPresenterImpl implements MoviesListingPresenter {
 
     private boolean isViewAttached() {
         return view != null;
+    }
+
+    private void filterMovies(List<Movie> movies) {
+        if (currentPage == 1) {
+            for (Movie movie : movies) {
+                if (movie.getTitle().equals("Fifty Shades Freed")) {
+                    movies.remove(movie);
+                    break;
+                }
+            }
+        }
     }
 }

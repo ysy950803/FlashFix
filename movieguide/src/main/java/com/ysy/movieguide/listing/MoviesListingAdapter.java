@@ -42,7 +42,7 @@ public class MoviesListingAdapter extends RecyclerView.Adapter<MoviesListingAdap
 
         public Movie movie;
 
-        public ViewHolder(View root) {
+        ViewHolder(View root) {
             super(root);
             ButterKnife.bind(this, root);
         }

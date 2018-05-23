@@ -22,12 +22,15 @@
         </activity>
         <activity
             android:name=".details.MovieDetailsActivity"
+            android:launchMode="singleTop"
             android:parentActivityName=".listing.MoviesListingActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".listing.MoviesListingActivity" />
         </activity>
-        <activity android:name=".flashfix.FixSettingsActivity" />
+        <activity
+            android:name=".flashfix.FixSettingsActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>
