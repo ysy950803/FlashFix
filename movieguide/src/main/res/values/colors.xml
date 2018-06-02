@@ -3,7 +3,18 @@
     <color name="colorPrimary">#333333</color>
     <color name="colorPrimaryDark">#1e1e1e</color>
     <color name="colorAccent">#ffc701</color>
+    <color name="window_background">#282828</color>
+    <color name="regular_text">#FFFFFF</color>
+    <color name="hint_text">#ABABAB</color>
+    <color name="toolbar_title">#FFFFFF</color>
 
     <color name="black_translucent_60">#99000000</color>
-    <color name="window_background">#282828</color>
+
+    <!--<color name="colorPrimary">#FFFFFF</color>-->
+    <!--<color name="colorPrimaryDark">#EBEEF1</color>-->
+    <!--<color name="colorAccent">#3C55FF</color>-->
+    <!--<color name="window_background">#F6F6F6</color>-->
+    <!--<color name="regular_text">#202020</color>-->
+    <!--<color name="hint_text">#ABABAB</color>-->
+    <!--<color name="toolbar_title">#646464</color>-->
 </resources>

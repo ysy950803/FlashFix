@@ -31,11 +31,11 @@
                     android:text="基本操作"
                     android:textColor="@color/colorAccent" />
 
-                <android.support.v7.widget.CardView
+                <RelativeLayout
                     android:id="@+id/card_clear_patch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@android:color/transparent">
+                    android:background="@color/colorPrimary">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="清除补丁"
-                            android:textColor="@android:color/white"
+                            android:textColor="@color/regular_text"
                             android:textSize="16sp" />
 
                         <TextView
@@ -58,12 +58,12 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="删除所有已加载的热修复补丁并重置"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/hint_text"
                             android:textSize="12sp" />
 
                     </LinearLayout>
 
-                </android.support.v7.widget.CardView>
+                </RelativeLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -76,6 +76,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="0.5dp"
+                    android:background="@color/colorPrimary"
                     android:paddingBottom="12dp"
                     android:paddingEnd="16dp"
                     android:paddingStart="16dp"
@@ -91,7 +93,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="收藏功能"
-                            android:textColor="@android:color/white"
+                            android:textColor="@color/regular_text"
                             android:textSize="16sp" />
 
                         <TextView
@@ -99,7 +101,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="在影片详情页面右下角增加收藏按钮"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/hint_text"
                             android:textSize="12sp" />
 
                     </LinearLayout>
@@ -116,6 +118,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="0.5dp"
+                    android:background="@color/colorPrimary"
                     android:paddingBottom="12dp"
                     android:paddingEnd="16dp"
                     android:paddingStart="16dp"
@@ -131,7 +135,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="顶部封面"
-                            android:textColor="@android:color/white"
+                            android:textColor="@color/regular_text"
                             android:textSize="16sp" />
 
                         <TextView
@@ -139,7 +143,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="在影片详情页面顶部增加封面图片"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/hint_text"
                             android:textSize="12sp" />
 
                     </LinearLayout>
@@ -156,6 +160,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="0.5dp"
+                    android:background="@color/colorPrimary"
                     android:paddingBottom="12dp"
                     android:paddingEnd="16dp"
                     android:paddingStart="16dp"
@@ -171,7 +177,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="评分排序"
-                            android:textColor="@android:color/white"
+                            android:textColor="@color/regular_text"
                             android:textSize="16sp" />
 
                         <TextView
@@ -179,7 +185,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="首页增加按评分排序的功能"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/hint_text"
                             android:textSize="12sp" />
 
                     </LinearLayout>
@@ -196,6 +202,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
                     android:paddingBottom="12dp"
                     android:paddingEnd="16dp"
                     android:paddingStart="16dp"
@@ -211,7 +218,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="排列数量"
-                            android:textColor="@android:color/white"
+                            android:textColor="@color/regular_text"
                             android:textSize="16sp" />
 
                         <TextView
@@ -219,7 +226,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="首页视图流显示改为3列"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/hint_text"
                             android:textSize="12sp" />
 
                     </LinearLayout>
@@ -241,12 +248,11 @@
                     android:text="关于"
                     android:textColor="@color/colorAccent" />
 
-                <android.support.v7.widget.CardView
+                <RelativeLayout
                     android:id="@+id/card_update"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    app:cardBackgroundColor="@android:color/transparent">
+                    android:background="@color/colorPrimary">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -261,7 +267,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="检查更新"
-                            android:textColor="@android:color/white"
+                            android:textColor="@color/regular_text"
                             android:textSize="16sp" />
 
                         <TextView
@@ -270,12 +276,12 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:text="Verison 3.0.7-13b5b38a5b00b8c5649b25c8eb42c27e"
-                            android:textColor="@android:color/darker_gray"
+                            android:textColor="@color/hint_text"
                             android:textSize="12sp" />
 
                     </LinearLayout>
 
-                </android.support.v7.widget.CardView>
+                </RelativeLayout>
 
             </LinearLayout>
 
